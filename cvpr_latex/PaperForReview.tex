@@ -88,313 +88,101 @@ SEIEE 2-306\\
 \section{Introduction}
 \label{sec:intro}
 
-Please follow the steps outlined below when submitting your manuscript to the IEEE Computer Society Press.
-This style guide now has several important modifications (for example, you are no longer warned against the use of sticky tape to attach your artwork to the paper), so all authors should read this new version.
-
-%-------------------------------------------------------------------------
-\subsection{Language}
-
-All manuscripts must be in English.
-
-\subsection{Dual submission}
-
-Please refer to the author guidelines on the \confName\ \confYear\ web page for a
-discussion of the policy on dual submissions.
-
-\subsection{Paper length}
-Papers, excluding the references section, must be no longer than eight pages in length.
-The references section will not be included in the page count, and there is no limit on the length of the references section.
-For example, a paper of eight pages with two pages of references would have a total length of 10 pages.
-{\bf There will be no extra page charges for \confName\ \confYear.}
-
-Overlength papers will simply not be reviewed.
-This includes papers where the margins and formatting are deemed to have been significantly altered from those laid down by this style guide.
-Note that this \LaTeX\ guide already sets figure captions and references in a smaller font.
-The reason such papers will not be reviewed is that there is no provision for supervised revisions of manuscripts.
-The reviewing process cannot determine the suitability of the paper for presentation in eight pages if it is reviewed in eleven.
-
-%-------------------------------------------------------------------------
-\subsection{The ruler}
-The \LaTeX\ style defines a printed ruler which should be present in the version submitted for review.
-The ruler is provided in order that reviewers may comment on particular lines in the paper without circumlocution.
-If you are preparing a document using a non-\LaTeX\ document preparation system, please arrange for an equivalent ruler to appear on the final output pages.
-The presence or absence of the ruler should not change the appearance of any other content on the page.
-The camera-ready copy should not contain a ruler.
-(\LaTeX\ users may use options of cvpr.sty to switch between different versions.)
-
-Reviewers:
-note that the ruler measurements do not align well with lines in the paper --- this turns out to be very difficult to do well when the paper contains many figures and equations, and, when done, looks ugly.
-Just use fractional references (\eg, this line is $087.5$), although in most cases one would expect that the approximate location will be adequate.
-
-
-\subsection{Paper ID}
-Make sure that the Paper ID from the submission system is visible in the version submitted for review (replacing the ``*****'' you see in this document).
-If you are using the \LaTeX\ template, \textbf{make sure to update paper ID in the appropriate place in the tex file}.
-
-
-\subsection{Mathematics}
-
-Please number all of your sections and displayed equations as in these examples:
-\begin{equation}
-  E = m\cdot c^2
-  \label{eq:important}
-\end{equation}
-and
-\begin{equation}
-  v = a\cdot t.
-  \label{eq:also-important}
-\end{equation}
-It is important for readers to be able to refer to any particular equation.
-Just because you did not refer to it in the text does not mean some future reader might not need to refer to it.
-It is cumbersome to have to use circumlocutions like ``the equation second from the top of page 3 column 1''.
-(Note that the ruler will not be present in the final copy, so is not an alternative to equation numbers).
-All authors will benefit from reading Mermin's description of how to write mathematics:
-\url{http://www.pamitc.org/documents/mermin.pdf}.
-
-\subsection{Blind review}
-
-Many authors misunderstand the concept of anonymizing for blind review.
-Blind review does not mean that one must remove citations to one's own work---in fact it is often impossible to review a paper unless the previous citations are known and available.
-
-Blind review means that you do not use the words ``my'' or ``our'' when citing previous work.
-That is all.
-(But see below for tech reports.)
-
-Saying ``this builds on the work of Lucy Smith [1]'' does not say that you are Lucy Smith;
-it says that you are building on her work.
-If you are Smith and Jones, do not say ``as we show in [7]'', say ``as Smith and Jones show in [7]'' and at the end of the paper, include reference 7 as you would any other cited work.
-
-An example of a bad paper just asking to be rejected:
-\begin{quote}
-\begin{center}
-    An analysis of the frobnicatable foo filter.
-\end{center}
-
-   In this paper we present a performance analysis of our previous paper [1], and show it to be inferior to all previously known methods.
-   Why the previous paper was accepted without this analysis is beyond me.
-
-   [1] Removed for blind review
-\end{quote}
-
-
-An example of an acceptable paper:
-\begin{quote}
-\begin{center}
-     An analysis of the frobnicatable foo filter.
-\end{center}
-
-   In this paper we present a performance analysis of the  paper of Smith \etal [1], and show it to be inferior to all previously known methods.
-   Why the previous paper was accepted without this analysis is beyond me.
-
-   [1] Smith, L and Jones, C. ``The frobnicatable foo filter, a fundamental contribution to human knowledge''. Nature 381(12), 1-213.
-\end{quote}
-
-If you are making a submission to another conference at the same time, which covers similar or overlapping material, you may need to refer to that submission in order to explain the differences, just as you would if you had previously published related work.
-In such cases, include the anonymized parallel submission~\cite{Authors14} as supplemental material and cite it as
-\begin{quote}
-[1] Authors. ``The frobnicatable foo filter'', F\&G 2014 Submission ID 324, Supplied as supplemental material {\tt fg324.pdf}.
-\end{quote}
-
-Finally, you may feel you need to tell the reader that more details can be found elsewhere, and refer them to a technical report.
-For conference submissions, the paper must stand on its own, and not {\em require} the reviewer to go to a tech report for further details.
-Thus, you may say in the body of the paper ``further details may be found in~\cite{Authors14b}''.
-Then submit the tech report as supplemental material.
-Again, you may not assume the reviewers will read this material.
-
-Sometimes your paper is about a problem which you tested using a tool that is widely known to be restricted to a single institution.
-For example, let's say it's 1969, you have solved a key problem on the Apollo lander, and you believe that the CVPR70 audience would like to hear about your
-solution.
-The work is a development of your celebrated 1968 paper entitled ``Zero-g frobnication: How being the only people in the world with access to the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
-
-You can handle this paper like any other.
-Do not write ``We show how to improve our previous work [Anonymous, 1968].
-This time we tested the algorithm on a lunar lander [name of lander removed for blind review]''.
-That would be silly, and would immediately identify the authors.
-Instead write the following:
-\begin{quotation}
-\noindent
-   We describe a system for zero-g frobnication.
-   This system is new because it handles the following cases:
-   A, B.  Previous systems [Zeus et al. 1968] did not  handle case B properly.
-   Ours handles it by including a foo term in the bar integral.
-
-   ...
-
-   The proposed system was integrated with the Apollo lunar lander, and went all the way to the moon, don't you know.
-   It displayed the following behaviours, which show how well we solved cases A and B: ...
-\end{quotation}
-As you can see, the above text follows standard scientific convention, reads better than the first version, and does not explicitly name you as the authors.
-A reviewer might think it likely that the new paper was written by Zeus \etal, but cannot make any decision based on that guess.
-He or she would have to be sure that no other authors could have been contracted to solve problem B.
-\medskip
-
-\noindent
-FAQ\medskip\\
-{\bf Q:} Are acknowledgements OK?\\
-{\bf A:} No.  Leave them for the final copy.\medskip\\
-{\bf Q:} How do I cite my results reported in open challenges?
-{\bf A:} To conform with the double-blind review policy, you can report results of other challenge participants together with your results in your paper.
-For your results, however, you should not identify yourself and should not mention your participation in the challenge.
-Instead present your results referring to the method proposed in your paper and draw conclusions based on the experimental comparison to other results.\medskip\\
-
-\begin{figure}[t]
-  \centering
-  \fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
-   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
-
-   \caption{Example of caption.
-   It is set in Roman so that mathematics (always set in Roman: $B \sin A = A \sin B$) may be included without an ugly clash.}
-   \label{fig:onecol}
-\end{figure}
-
-\subsection{Miscellaneous}
-
-\noindent
-Compare the following:\\
-\begin{tabular}{ll}
- \verb'$conf_a$' &  $conf_a$ \\
- \verb'$\mathit{conf}_a$' & $\mathit{conf}_a$
-\end{tabular}\\
-See The \TeX book, p165.
-
-The space after \eg, meaning ``for example'', should not be a sentence-ending space.
-So \eg is correct, {\em e.g.} is not.
-The provided \verb'\eg' macro takes care of this.
-
-When citing a multi-author paper, you may save space by using ``et alia'', shortened to ``\etal'' (not ``{\em et.\ al.}'' as ``{\em et}'' is a complete word).
-If you use the \verb'\etal' macro provided, then you need not worry about double periods when used at the end of a sentence as in Alpher \etal.
-However, use it only when there are three or more authors.
-Thus, the following is correct:
-   ``Frobnication has been trendy lately.
-   It was introduced by Alpher~\cite{Alpher02}, and subsequently developed by
-   Alpher and Fotheringham-Smythe~\cite{Alpher03}, and Alpher \etal~\cite{Alpher04}.''
-
-This is incorrect: ``... subsequently developed by Alpher \etal~\cite{Alpher03} ...'' because reference~\cite{Alpher03} has just two authors.
-
-
-% Update the cvpr.cls to do the following automatically.
-% For this citation style, keep multiple citations in numerical (not
-% chronological) order, so prefer \cite{Alpher03,Alpher02,Authors14} to
-% \cite{Alpher02,Alpher03,Authors14}.
-
-
-\begin{figure*}
-  \centering
-  \begin{subfigure}{0.68\linewidth}
-    \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
-    \caption{An example of a subfigure.}
-    \label{fig:short-a}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.28\linewidth}
-    \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
-    \caption{Another example of a subfigure.}
-    \label{fig:short-b}
-  \end{subfigure}
-  \caption{Example of a short caption, which should be centered.}
-  \label{fig:short}
-\end{figure*}
+With the rapid development of deep learning technology, many fields have started to adopt deep learning techniques to improve task efficiency. Training deep learning models requires a large amount of data, and this data needs to have corresponding labels in order to train models that have strong fitting and generalization capabilities. However, in the field of biomedical imaging, it is not possible to obtain a large amount of data due to patient privacy concerns. Additionally, the annotation of biomedical images requires professional medical experts, which further increases the cost of data annotation. As a result, there is a scarcity of biomedical imaging datasets, and the number of annotated data samples is even smaller.
+Biomedical image segmentation typically involves pixel-level classification of lesions, tissues, and organs in biomedical images. These lesions, tissues, and organs generally occupy a large space or are far apart in biomedical images. Based on this characteristic, we analyzed the current mainstream biomedical image segmentation models based on convolutional neural networks (CNNs). These models use traditional convolutional approaches for feature extraction. However, traditional convolutions are limited by their receptive field and can only extract local features of the target, failing to capture global features. This can cause the model to struggle in distinguishing background regions in the image and may misclassify background pixels as the features of interest, leading to a decrease in segmentation accuracy. Researchers have proposed various methods to address these issues, such as using multiple convolutional kernels of different sizes or downsampling to reduce image resolution. These methods partially solve the problem of CNNs' inability to capture global features. However, they either increase the model's complexity and reduce its runtime speed or sacrifice some local feature information, resulting in a decrease in model accuracy without achieving a balance.
+To address the aforementioned problems, this paper proposes an end-to-end deep learning network based on self-supervised learning. In this approach, the self-supervised framework SimCLR is first employed for training, overcoming the lack of labeled data by directly extracting the data distribution features. Then, the encoder part of SimCLR, which captures the data distribution, is separated and combined with a decoder to accomplish the downstream end-to-end segmentation task. This method is named SimTrans, derived from the combination of the self-supervised framework SimCLR and the Transformer framework.
+The paper begins by introducing the self-supervised learning framework SimCLR, followed by an introduction to the Swin Transformer framework. It then presents the weighted structured loss function used for the downstream task and introduces the proposed SimTrans deep learning framework. Finally, the paper conducts experiments to evaluate the proposed model, providing details on the experimental setup, results, and analysis.
 
 %------------------------------------------------------------------------
-\section{Formatting your paper}
-\label{sec:formatting}
+\section{Related Work}
+\label{sec:related work}
 
-All text must be in a two-column format.
-The total allowable size of the text area is $6\frac78$ inches (17.46 cm) wide by $8\frac78$ inches (22.54 cm) high.
-Columns are to be $3\frac14$ inches (8.25 cm) wide, with a $\frac{5}{16}$ inch (0.8 cm) space between them.
-The main title (on the first page) should begin 1 inch (2.54 cm) from the top edge of the page.
-The second and following pages should begin 1 inch (2.54 cm) from the top edge.
-On all pages, the bottom margin should be $1\frac{1}{8}$ inches (2.86 cm) from the bottom edge of the page for $8.5 \times 11$-inch paper;
-for A4 paper, approximately $1\frac{5}{8}$ inches (4.13 cm) from the bottom edge of the
-page.
+\subsection{SimCLR}
 
-%-------------------------------------------------------------------------
-\subsection{Margins and page numbering}
+To address the scarcity of biomedical image datasets, researchers aim to develop models that can learn features directly from the data without the need for labeled data. This approach, known as self-supervised learning, allows models to learn features from the data itself. One widely studied self-supervised learning framework in the field is SimCLR, proposed by Hinton et al.
+SimCLR consists of four main components: data augmentation, a base encoder, a projection head, and a contrastive loss. The framework is designed to learn powerful representations from unlabeled data. In SimCLR, data augmentation is applied to generate multiple augmented versions of each unlabeled sample. These augmented samples are then passed through the base encoder, which extracts their features. The projection head further processes the encoded features to produce informative representations. Finally, the contrastive loss function encourages similar representations of augmented samples from the same sample while pushing representations from different samples apart.
+The overall objective of SimCLR is to maximize agreement between differently augmented views of the same data sample while minimizing agreement between different samples. This enables the model to learn rich and discriminative representations without the need for explicit labels. SimCLR has garnered significant attention from researchers and has achieved remarkable results in various computer vision tasks, including biomedical image analysis.
 
-All printed material, including text, illustrations, and charts, must be kept
-within a print area $6\frac{7}{8}$ inches (17.46 cm) wide by $8\frac{7}{8}$ inches (22.54 cm)
-high.
-%
-Page numbers should be in the footer, centered and $\frac{3}{4}$ inches from the bottom of the page.
-The review version should have page numbers, yet the final version submitted as camera ready should not show any page numbers.
-The \LaTeX\ template takes care of this when used properly.
+The data augmentation module in SimCLR performs random transformations on given data samples to generate two correlated views of the same sample, denoted as  and . These two views are treated as a positive sample pair. Data augmentation techniques used in SimCLR include random cropping, resizing, color distortion, and Gaussian blur. These operations generate pseudo-labels, which are then utilized to train the model.
+The encoder in SimCLR extracts feature vectors, represented as  and , from the augmented data samples. The choice of encoder is not constrained and commonly used backbone frameworks like VGG and ResNet can serve as encoders in SimCLR.
+The projection head maps the data representations to the space of contrastive loss. A common approach is to use a single-layer multilayer perceptron (MLP) for this mapping, as shown in Equation (1):
+
+Here,  represents the mapping function,  is the ReLU activation function. According to the experimental analysis by the authors of SimCLR, defining the contrastive loss on the projected feature representation  tends to yield better results compared to using the feature representation  directly from the encoder.
+The contrastive loss module defines the contrastive loss function for the contrastive prediction task. The key component of SimCLR is the normalized temperature-scaled cross-entropy loss (NT-Xent) used as the contrastive loss, given by Equation (2):
+First, it calculates the similarity between a positive pair and all negative representations. The cosine similarity function is commonly used as a distance metric. Then, negative cross-entropy loss is employed to calculate the loss function for the positive sample pair .
+
+%------------------------------------------------------------------------
 
 
+\subsection{Swin Transformer}
 
-%-------------------------------------------------------------------------
-\subsection{Type style and fonts}
+Swin Transformer is a hierarchical structure that builds feature maps by merging image patches at deeper layers, allowing flexible modeling at multiple scales. It achieves a linear computational complexity relative to the image size by computing self-attention within each local non-overlapping window. Additionally, Swin Transformer enables cross-window connections, as shown in Figure 2. The self-attention computation of a new window spans the boundaries of previously processed windows in layer l, providing cross-window connections between adjacent non-overlapping windows. This operation has been found effective in tasks such as image classification, object detection, and semantic segmentation. The ability to model visual entities of various scales and replace quadratic complexity with linear computational complexity contributes to Swin Transformer's versatility as a backbone for various visual tasks.
+Swin Transformer consists of a Multi-head Self-Attention module (MSA) based on movable windows, followed by a two-layer Multilayer Perceptron (MLP) with Gaussian Error Linear Units (GELU) as the non-linear activation function. GELU is a high-performance neural network activation function that weights the inputs rather than gating them with signs as in ReLU. Layer Normalization (LN) is applied before each MSA module and each MLP, and a residual connection is employed after each module, as shown in Figure 3.
+The computational complexity of the standalone MSA module in Swin Transformer has a quadratic relationship with the image size, as shown in Equation (3):
+However, in Swin Transformer, the self-attention computation is performed within non-overlapping local windows, resulting in a linear computational complexity relative to the image size, as shown in Equation (4):
+Here, M is a constant.
+Furthermore, Swin Transformer incorporates relative position information into the attention computation, as shown in Equation (5):
+Where Q, K, and V represent the query matrix, key matrix, and value matrix, respectively. d is the dimension, and B represents the relative position bias. Compared to using absolute positions, incorporating relative positional biases significantly improves the model's performance.
+Additionally, Swin Transformer introduces inductive biases such as locality, hierarchical feature representation, and translation equivariance, enabling it to serve as a universal backbone network for various image recognition tasks.
+Note: The translation assumes the correct representation of the formulas and symbols based on the original text.
 
-Wherever Times is specified, Times Roman may also be used.
-If neither is available on your word processor, please use the font closest in
-appearance to Times to which you have access.
+%------------------------------------------------------------------------
 
-MAIN TITLE.
-Center the title $1\frac{3}{8}$ inches (3.49 cm) from the top edge of the first page.
-The title should be in Times 14-point, boldface type.
-Capitalize the first letter of nouns, pronouns, verbs, adjectives, and adverbs;
-do not capitalize articles, coordinate conjunctions, or prepositions (unless the title begins with such a word).
-Leave two blank lines after the title.
+\subsection{Residual Channel Attention}
 
-AUTHOR NAME(s) and AFFILIATION(s) are to be centered beneath the title
-and printed in Times 12-point, non-boldface type.
-This information is to be followed by two blank lines.
+The Residual Channel Attention (RCA) module combines channel attention and residual connections. By using channel attention, it can capture features from different channels and enhance channel-wise information. The residual connections then connect the features, allowing for more refined feature representation. The structure of the RCA module is illustrated in Figure 5.
 
-The ABSTRACT and MAIN TEXT are to be in a two-column format.
+%------------------------------------------------------------------------
 
-MAIN TEXT.
-Type main text in 10-point Times, single-spaced.
-Do NOT use double-spacing.
-All paragraphs should be indented 1 pica (approx.~$\frac{1}{6}$ inch or 0.422 cm).
-Make sure your text is fully justified---that is, flush left and flush right.
-Please do not place any additional blank lines between paragraphs.
+\subsection{Multi-scale Dilated Convolution}
 
-Figure and table captions should be 9-point Roman type as in \cref{fig:onecol,fig:short}.
-Short captions should be centred.
+Multi-scale dilated convolution is composed of convolutions with different dilation rates. Firstly, the feature map undergoes multiple convolution layers with different dilation rates. Then, the output results from each convolution layer are cascaded together to form the output of the entire module. This approach not only addresses the issue of information discontinuity caused by dilation but also helps the model capture multi-scale feature information. Figure 6 illustrates dilated convolutions, with the left side showing a dilated convolution with a dilation rate of 2, and the right side showing a dilated convolution with a dilation rate of 3.
 
-\noindent Callouts should be 9-point Helvetica, non-boldface type.
-Initially capitalize only the first word of section titles and first-, second-, and third-order headings.
+%------------------------------------------------------------------------
 
-FIRST-ORDER HEADINGS.
-(For example, {\large \bf 1. Introduction}) should be Times 12-point boldface, initially capitalized, flush left, with one blank line before, and one blank line after.
+\section{Method}
+\label{sec:method}
 
-SECOND-ORDER HEADINGS.
-(For example, { \bf 1.1. Database elements}) should be Times 11-point boldface, initially capitalized, flush left, with one blank line before, and one after.
-If you require a third-order heading (we discourage it), use 10-point Times, boldface, initially capitalized, flush left, preceded by one blank line, followed by a period and your text on the same line.
+We utilize Swin Transformer as the encoder in the SimCLR framework and train it using unlabeled data, allowing the Swin Transformer to learn the distribution and features of the data with the help of pseudo-labels. Then, we apply the learned feature encoder to downstream segmentation tasks. Based on SimCLR and Swin Transformer, we design a deep learning network model called SimTrans, as shown in Figure 4. In the downstream tasks, to achieve an end-to-end output, a simple decoder is employed. It fuses the features obtained at different stages of the Swin Transformer and includes a decoder module that upsamples the fused features for comparison with the label map. Additionally, to better train the model, we propose a weighted structured loss function based on existing loss functions. It is a weighted sum of binary cross-entropy loss (BCE) and intersection over union loss (IOU):
+Here, Y represents the label, W represents the edge weight, and represents the average pooling operation.
 
-%-------------------------------------------------------------------------
-\subsection{Footnotes}
+The SimTrans model is based on the self-supervised learning framework SimCLR and the Transformer model, specifically designed for the challenges of biomedical image datasets with limited annotated data. This model leverages the strategy of SimCLR, which involves data augmentation techniques to generate multiple augmented images from a single image. These generated images serve as positive examples, while the other images in a training batch act as negative examples. This allows for the reduction of the distance between positive examples and the separation of negative examples.
+After deciding to use the self-supervised learning framework of SimCLR, we compared various commonly used backbone architectures such as VGG and ResNet. However, these architectures, based on traditional convolutional neural networks, have certain limitations, such as fixed receptive fields and large model sizes. Considering the need for global feature consideration in biomedical images, a model capable of capturing long-range dependencies was preferred. Therefore, the Transformer framework was considered, and different Transformer architectures such as ViT and TransUNet were evaluated. Ultimately, Swin Transformer was selected due to its ability to capture global features using the Transformer's long-range dependency modeling capabilities. Additionally, the introduction of a sliding window approach for attention computation in Swin Transformer reduced the number of parameters required for global attention computation. Moreover, Swin Transformer has a hierarchical design that continuously reduces the resolution of input feature maps, similar to the downsampling process in convolutional neural networks, to expand the receptive field.
+Using Swin Transformer as the encoder part of SimCLR, training is conducted using generated pseudo-labels. Once training is completed, for the downstream task of biomedical image segmentation, a decoder is added to Swin Transformer. The decoder consists of two modules: Residual Channel Attention Block (RCAB) and Multi-Scale Dilated Convolution (MSD).
 
-Please use footnotes\footnote{This is what a footnote looks like.
-It often distracts the reader from the main flow of the argument.} sparingly.
-Indeed, try to avoid footnotes altogether and include necessary peripheral observations in the text (within parentheses, if you prefer, as in this sentence).
-If you wish to use a footnote, place it at the bottom of the column on the page on which it is referenced.
-Use Times 8-point type, single-spaced.
+%------------------------------------------------------------------------
 
+\section{Experiment}
+\label{sec:experiment}
 
-%-------------------------------------------------------------------------
-\subsection{Cross-references}
+This study conducted experimental validation of the proposed deep learning model on the ATLAS (Automatic Labeling of Brain Stroke Lesion) dataset, which is a publicly available dataset for brain stroke lesion segmentation. The dataset consists of a total of 229 T1-weighted brain magnetic resonance imaging (MRI) images provided by 11 different medical research centers. These images are expertly annotated by professional physicians. Each three-dimensional image has a voxel size of 0.9mm × 0.9mm × 0.3mm and contains 189 slices. Each slice has dimensions of 233 × 197. The entire ATLAS dataset consists of 43,281 two-dimensional slices. In this study, 10,203 labeled data were processed and used for validation in the downstream segmentation task, while the remaining 33,078 slices were used for self-supervised learning to learn the features of brain stroke data.
+Three evaluation metrics, namely Dice coefficient, mean intersection over union (IoU), and precision, were selected to quantify the performance of the proposed model.
+All the experiments were conducted in the PyTorch framework and trained using Nvidia-RTX 3090Ti GPUs. The deep learning models were trained for a total of 50 epochs.
 
-For the benefit of author(s) and readers, please use the
-{\small\begin{verbatim}
-  \cref{...}
-\end{verbatim}}  command for cross-referencing to figures, tables, equations, or sections.
-This will automatically insert the appropriate label alongside the cross-reference as in this example:
-\begin{quotation}
-  To see how our method outperforms previous work, please see \cref{fig:onecol} and \cref{tab:example}.
-  It is also possible to refer to multiple targets as once, \eg~to \cref{fig:onecol,fig:short-a}.
-  You may also return to \cref{sec:formatting} or look at \cref{eq:also-important}.
-\end{quotation}
-If you do not wish to abbreviate the label, for example at the beginning of the sentence, you can use the
-{\small\begin{verbatim}
-  \Cref{...}
-\end{verbatim}}
-command. Here is an example:
-\begin{quotation}
-  \Cref{fig:onecol} is also quite important.
-\end{quotation}
+\subsection{Results and Analysis}
+
+This study employed the self-supervised learning framework SimCLR to learn the features of unlabeled data. SimCLR utilizes data augmentation techniques to generate pseudo-labels, as shown in Figure 7.
+
+To assess whether the SimTrans model focuses more on the lesion regions at different stages, the feature maps were visualized and analyzed. Figure 8 illustrates the visualization of the feature maps.
+
+Figure 8 displays the following images from left to right: the original brain MRI image, feature maps from the first stage, feature maps from the second stage, feature maps from the third stage, feature maps from the fourth stage, and the ground truth label map. From the visualization, it can be observed that the SimTrans model progressively increases its attention to the lesion regions, demonstrating its effectiveness in segmenting the target regions.
+
+The comparison results between SimTrans and two other networks, ResUNet and ViT, are presented in Table 1.
+
+It can be observed that when comparing SimTrans with ResUNet, there is an improvement of 0.0775 in Dice coefficient, 0.0872 in Mean Intersection over Union (MIoU), and 0.0870 in precision. These results indicate that the SimTrans network exhibits strong generalization ability and excellent segmentation performance. It can accurately segment the regions affected by brain stroke. The visualization of the segmentation results is shown in Figure 9. From left to right, each column represents the original image, the ground truth label map, the predicted map from ViT, the predicted map from ResUNet, and the predicted map from SimTrans.
+
+The comparison of parameter count and computational complexity for each model is presented in Table 2. From the table, it can be observed that SimTrans has fewer parameters and lower computational complexity compared to ViT, which is also a Transformer-based model. However, when compared to the classic ResUNet network model, which is based on ResNet as its backbone, there is still some gap. Although SimTrans shows improvement in accuracy, there is still room for progress in terms of model size and computational complexity.
+
+%------------------------------------------------------------------------
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper proposes an end-to-end self-supervised deep learning network model called SimTrans for the segmentation of brain stroke magnetic resonance imaging (MRI) images. SimTrans utilizes the self-supervised learning framework SimCLR to learn the data distribution and features from unlabeled data. The trained encoder framework, Swin Transformer, is then combined with a decoder structure for the segmentation of brain stroke regions. Additionally, a weighted structured loss function is introduced specifically for brain stroke segmentation to aid the model in achieving better segmentation results. Experimental results on the publicly available brain stroke dataset ATLAS demonstrate the effectiveness of the proposed network model in brain stroke segmentation.
 
 %-------------------------------------------------------------------------
-\subsection{References}
+\section{References}
+\label{sec:references}
 
 List and number all bibliographical references in 9-point Times, single-spaced, at the end of your paper.
 When referenced in the text, enclose the citation number in square brackets, for
@@ -419,45 +207,6 @@ If you use the template as advised, this will be taken care of automatically.
 \end{table}
 
 %-------------------------------------------------------------------------
-\subsection{Illustrations, graphs, and photographs}
-
-All graphics should be centered.
-In \LaTeX, avoid using the \texttt{center} environment for this purpose, as this adds potentially unwanted whitespace.
-Instead use
-{\small\begin{verbatim}
-  \centering
-\end{verbatim}}
-at the beginning of your figure.
-Please ensure that any point you wish to make is resolvable in a printed copy of the paper.
-Resize fonts in figures to match the font in the body text, and choose line widths that render effectively in print.
-Readers (and reviewers), even of an electronic copy, may choose to print your paper in order to read it.
-You cannot insist that they do otherwise, and therefore must not assume that they can zoom in to see tiny details on a graphic.
-
-When placing figures in \LaTeX, it's almost always best to use \verb+\includegraphics+, and to specify the figure width as a multiple of the line width as in the example below
-{\small\begin{verbatim}
-   \usepackage{graphicx} ...
-   \includegraphics[width=0.8\linewidth]
-                   {myfile.pdf}
-\end{verbatim}
-}
-
-
-%-------------------------------------------------------------------------
-\subsection{Color}
-
-Please refer to the author guidelines on the \confName\ \confYear\ web page for a discussion of the use of color in your document.
-
-If you use color in your plots, please keep in mind that a significant subset of reviewers and readers may have a color vision deficiency; red-green blindness is the most frequent kind.
-Hence avoid relying only on color as the discriminative feature in plots (such as red \vs green lines), but add a second discriminative feature to ease disambiguation.
-
-%------------------------------------------------------------------------
-\section{Final copy}
-
-You must include your signed IEEE copyright release form when you submit your finished paper.
-We MUST have this form before your paper can be published in the proceedings.
-
-Please direct any questions to the production editor in charge of these proceedings at the IEEE Computer Society Press:
-\url{https://www.computer.org/about/contact}.
 
 
 %%%%%%%%% REFERENCES
