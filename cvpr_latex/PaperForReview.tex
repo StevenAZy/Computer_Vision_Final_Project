@@ -101,6 +101,16 @@ The paper begins by introducing the self-supervised learning framework SimCLR, f
 
 To address the scarcity of biomedical image datasets, researchers aim to develop models that can learn features directly from the data without the need for labeled data. This approach, known as self-supervised learning, allows models to learn features from the data itself. One widely studied self-supervised learning framework in the field is SimCLR, proposed by Hinton et al.
 SimCLR consists of four main components: data augmentation, a base encoder, a projection head, and a contrastive loss. The framework is designed to learn powerful representations from unlabeled data. In SimCLR, data augmentation is applied to generate multiple augmented versions of each unlabeled sample. These augmented samples are then passed through the base encoder, which extracts their features. The projection head further processes the encoded features to produce informative representations. Finally, the contrastive loss function encourages similar representations of augmented samples from the same sample while pushing representations from different samples apart.
+
+\begin{figure*}
+  \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics{Images/SimCLR.png}
+  \caption{Framwork of SimCLR.}
+  \end{center}
+  \label{fig:simclr}
+\end{figure*}
+
 The overall objective of SimCLR is to maximize agreement between differently augmented views of the same data sample while minimizing agreement between different samples. This enables the model to learn rich and discriminative representations without the need for explicit labels. SimCLR has garnered significant attention from researchers and has achieved remarkable results in various computer vision tasks, including biomedical image analysis.
 
 The data augmentation module in SimCLR performs random transformations on given data samples to generate two correlated views of the same sample, denoted as  and . These two views are treated as a positive sample pair. Data augmentation techniques used in SimCLR include random cropping, resizing, color distortion, and Gaussian blur. These operations generate pseudo-labels, which are then utilized to train the model.
@@ -117,6 +127,16 @@ First, it calculates the similarity between a positive pair and all negative rep
 \subsection{Swin Transformer}
 
 Swin Transformer is a hierarchical structure that builds feature maps by merging image patches at deeper layers, allowing flexible modeling at multiple scales. It achieves a linear computational complexity relative to the image size by computing self-attention within each local non-overlapping window. Additionally, Swin Transformer enables cross-window connections, as shown in Figure 2. The self-attention computation of a new window spans the boundaries of previously processed windows in layer l, providing cross-window connections between adjacent non-overlapping windows. This operation has been found effective in tasks such as image classification, object detection, and semantic segmentation. The ability to model visual entities of various scales and replace quadratic complexity with linear computational complexity contributes to Swin Transformer's versatility as a backbone for various visual tasks.
+
+\begin{figure*}
+  \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics{Images/ST_1.png}
+  \end{center}
+     \caption{Self-attention computation for non-overlapping windows.}
+  \label{fig:st_1}
+\end{figure*}
+
 Swin Transformer consists of a Multi-head Self-Attention module (MSA) based on movable windows, followed by a two-layer Multilayer Perceptron (MLP) with Gaussian Error Linear Units (GELU) as the non-linear activation function. GELU is a high-performance neural network activation function that weights the inputs rather than gating them with signs as in ReLU. Layer Normalization (LN) is applied before each MSA module and each MLP, and a residual connection is employed after each module, as shown in Figure 3.
 The computational complexity of the standalone MSA module in Swin Transformer has a quadratic relationship with the image size, as shown in Equation (3):
 However, in Swin Transformer, the self-attention computation is performed within non-overlapping local windows, resulting in a linear computational complexity relative to the image size, as shown in Equation (4):
@@ -124,7 +144,16 @@ Here, M is a constant.
 Furthermore, Swin Transformer incorporates relative position information into the attention computation, as shown in Equation (5):
 Where Q, K, and V represent the query matrix, key matrix, and value matrix, respectively. d is the dimension, and B represents the relative position bias. Compared to using absolute positions, incorporating relative positional biases significantly improves the model's performance.
 Additionally, Swin Transformer introduces inductive biases such as locality, hierarchical feature representation, and translation equivariance, enabling it to serve as a universal backbone network for various image recognition tasks.
-Note: The translation assumes the correct representation of the formulas and symbols based on the original text.
+
+\begin{figure*}
+  % \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics[width=0.5\linewidth]{Images/ST_2.png}
+  % \end{center}
+  \caption{Block of Swin Transformer.}
+  \label{fig:st_2}
+\end{figure*}
+
 
 %------------------------------------------------------------------------
 
@@ -132,11 +161,29 @@ Note: The translation assumes the correct representation of the formulas and sym
 
 The Residual Channel Attention (RCA) module combines channel attention and residual connections. By using channel attention, it can capture features from different channels and enhance channel-wise information. The residual connections then connect the features, allowing for more refined feature representation. The structure of the RCA module is illustrated in Figure 5.
 
+% \begin{figure*}
+%   \begin{center}
+%   % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}  
+%   \includegraphics{Images/RCBA.png}
+%   \end{center}
+%      \caption{Structure of RCBA.}
+%   \label{fig:rcba}
+% \end{figure*}
+
 %------------------------------------------------------------------------
 
 \subsection{Multi-scale Dilated Convolution}
 
 Multi-scale dilated convolution is composed of convolutions with different dilation rates. Firstly, the feature map undergoes multiple convolution layers with different dilation rates. Then, the output results from each convolution layer are cascaded together to form the output of the entire module. This approach not only addresses the issue of information discontinuity caused by dilation but also helps the model capture multi-scale feature information. Figure 6 illustrates dilated convolutions, with the left side showing a dilated convolution with a dilation rate of 2, and the right side showing a dilated convolution with a dilation rate of 3.
+
+% \begin{figure*}
+%   \begin{center}
+%   % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+%   \includegraphics{Images/MSD.png}
+%   \end{center}
+%      \caption{Structure of MSD.}
+%   \label{fig:msd}
+% \end{figure*}
 
 %------------------------------------------------------------------------
 
@@ -145,6 +192,16 @@ Multi-scale dilated convolution is composed of convolutions with different dilat
 
 We utilize Swin Transformer as the encoder in the SimCLR framework and train it using unlabeled data, allowing the Swin Transformer to learn the distribution and features of the data with the help of pseudo-labels. Then, we apply the learned feature encoder to downstream segmentation tasks. Based on SimCLR and Swin Transformer, we design a deep learning network model called SimTrans, as shown in Figure 4. In the downstream tasks, to achieve an end-to-end output, a simple decoder is employed. It fuses the features obtained at different stages of the Swin Transformer and includes a decoder module that upsamples the fused features for comparison with the label map. Additionally, to better train the model, we propose a weighted structured loss function based on existing loss functions. It is a weighted sum of binary cross-entropy loss (BCE) and intersection over union loss (IOU):
 Here, Y represents the label, W represents the edge weight, and represents the average pooling operation.
+
+\begin{figure*}
+  \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics[width=0.8\linewidth]{Images/SimTrans.png}
+  \end{center}
+     \caption{Structure of SimTrans.}
+  \label{fig:simtrans}
+\end{figure*}
+
 
 The SimTrans model is based on the self-supervised learning framework SimCLR and the Transformer model, specifically designed for the challenges of biomedical image datasets with limited annotated data. This model leverages the strategy of SimCLR, which involves data augmentation techniques to generate multiple augmented images from a single image. These generated images serve as positive examples, while the other images in a training batch act as negative examples. This allows for the reduction of the distance between positive examples and the separation of negative examples.
 After deciding to use the self-supervised learning framework of SimCLR, we compared various commonly used backbone architectures such as VGG and ResNet. However, these architectures, based on traditional convolutional neural networks, have certain limitations, such as fixed receptive fields and large model sizes. Considering the need for global feature consideration in biomedical images, a model capable of capturing long-range dependencies was preferred. Therefore, the Transformer framework was considered, and different Transformer architectures such as ViT and TransUNet were evaluated. Ultimately, Swin Transformer was selected due to its ability to capture global features using the Transformer's long-range dependency modeling capabilities. Additionally, the introduction of a sliding window approach for attention computation in Swin Transformer reduced the number of parameters required for global attention computation. Moreover, Swin Transformer has a hierarchical design that continuously reduces the resolution of input feature maps, similar to the downsampling process in convolutional neural networks, to expand the receptive field.
@@ -163,15 +220,71 @@ All the experiments were conducted in the PyTorch framework and trained using Nv
 
 This study employed the self-supervised learning framework SimCLR to learn the features of unlabeled data. SimCLR utilizes data augmentation techniques to generate pseudo-labels, as shown in Figure 7.
 
+\begin{figure*}
+  \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics{Images/DR_SimCLR.png}
+  \end{center}
+     \caption{Different representations of the same image produced by SimCLR.}
+  \label{fig:dr_simclr}
+\end{figure*}
+
+
 To assess whether the SimTrans model focuses more on the lesion regions at different stages, the feature maps were visualized and analyzed. Figure 8 illustrates the visualization of the feature maps.
 
-Figure 8 displays the following images from left to right: the original brain MRI image, feature maps from the first stage, feature maps from the second stage, feature maps from the third stage, feature maps from the fourth stage, and the ground truth label map. From the visualization, it can be observed that the SimTrans model progressively increases its attention to the lesion regions, demonstrating its effectiveness in segmenting the target regions.
+\begin{figure*}
+  \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics{Images/Vision.png}
+  \end{center}
+     \caption{Feature visualization.}
+  \label{fig:vision}
+\end{figure*}
 
+Figure 8 displays the following images from left to right: the original brain MRI image, feature maps from the first stage, feature maps from the second stage, feature maps from the third stage, feature maps from the fourth stage, and the ground truth label map. From the visualization, it can be observed that the SimTrans model progressively increases its attention to the lesion regions, demonstrating its effectiveness in segmenting the target regions.
 The comparison results between SimTrans and two other networks, ResUNet and ViT, are presented in Table 1.
+
+\begin{table}
+  \centering
+  \begin{tabular}{lccc}
+    \toprule
+    Model & Dice & MIoU & Precision \\
+    \midrule
+    ResUNet & 0.6810 & 0.5552 & 0.5583 \\
+    ViT & 0.6783 & 0.5496 & 0.5529 \\
+    SimTrans & 0.7585 & 0.6424 & 0.6453 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results.   Ours is better.}
+  \label{tab:result_1}
+\end{table}
 
 It can be observed that when comparing SimTrans with ResUNet, there is an improvement of 0.0775 in Dice coefficient, 0.0872 in Mean Intersection over Union (MIoU), and 0.0870 in precision. These results indicate that the SimTrans network exhibits strong generalization ability and excellent segmentation performance. It can accurately segment the regions affected by brain stroke. The visualization of the segmentation results is shown in Figure 9. From left to right, each column represents the original image, the ground truth label map, the predicted map from ViT, the predicted map from ResUNet, and the predicted map from SimTrans.
 
+\begin{figure*}
+  \begin{center}
+  % \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+  \includegraphics{Images/Results.png}
+  \end{center}
+     \caption{Model segmentation visualization.}
+  \label{fig:result}
+\end{figure*}
+
 The comparison of parameter count and computational complexity for each model is presented in Table 2. From the table, it can be observed that SimTrans has fewer parameters and lower computational complexity compared to ViT, which is also a Transformer-based model. However, when compared to the classic ResUNet network model, which is based on ResNet as its backbone, there is still some gap. Although SimTrans shows improvement in accuracy, there is still room for progress in terms of model size and computational complexity.
+
+\begin{table}
+  \centering
+  \begin{tabular}{lccc}
+    \toprule
+    Metric & ResUNet & ViT & SimTrans \\
+    \midrule
+    Parameters/MB & 24.01 & 108.25 & 87.32 \\
+    Complexity/GMac & 15.24 & 55.42 & 47.51 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results.   Ours is better.}
+  \label{tab:result_2}
+\end{table}
 
 %------------------------------------------------------------------------
 
@@ -190,21 +303,6 @@ example~\cite{Authors14}.
 Where appropriate, include page numbers and the name(s) of editors of referenced books.
 When you cite multiple papers at once, please make sure that you cite them in numerical order like this \cite{Alpher02,Alpher03,Alpher05,Authors14b,Authors14}.
 If you use the template as advised, this will be taken care of automatically.
-
-\begin{table}
-  \centering
-  \begin{tabular}{@{}lc@{}}
-    \toprule
-    Method & Frobnability \\
-    \midrule
-    Theirs & Frumpy \\
-    Yours & Frobbly \\
-    Ours & Makes one's heart Frob\\
-    \bottomrule
-  \end{tabular}
-  \caption{Results.   Ours is better.}
-  \label{tab:example}
-\end{table}
 
 %-------------------------------------------------------------------------
 
