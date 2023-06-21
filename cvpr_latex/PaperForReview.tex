@@ -2,7 +2,8 @@
 % based on the CVPR template provided by Ming-Ming Cheng (https://github.com/MCG-NKU/CVPR_Template)
 % modified and extended by Stefan Roth (stefan.roth@NOSPAMtu-darmstadt.de)
 
-\documentclass[10pt,twocolumn,letterpaper]{article}
+\documentclass[10pt,twocolumn,a4paper]{article}
+\usepackage[margin=1in]{geometry}
 
 %%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
 % \usepackage[review]{cvpr}      % To produce the REVIEW version
@@ -176,7 +177,7 @@ Additionally, Swin Transformer introduces inductive biases such as locality, hie
 
 \subsection{Residual Channel Attention}
 
-The Residual Channel Attention (RCA)\cite{RCAB} module combines channel attention and residual connections. By using channel attention, it can capture features from different channels and enhance channel-wise information. The residual connections then connect the features, allowing for more refined feature representation. The structure of the RCA module is illustrated in Figure 5.
+The Residual Channel Attention (RCA)\cite{RCAB} module combines channel attention and residual connections. By using channel attention, it can capture features from different channels and enhance channel-wise information. The residual connections then connect the features, allowing for more refined feature representation. The structure of the RCA module is illustrated in Figure 4.
 
 \begin{figure}[htbp]   %注意，这里设置是关键
 	\centering
@@ -189,7 +190,7 @@ The Residual Channel Attention (RCA)\cite{RCAB} module combines channel attentio
 
 \subsection{Multi-scale Dilated Convolution}
 
-Multi-scale dilated convolution\cite{MSD} is composed of convolutions with different dilation rates. Firstly, the feature map undergoes multiple convolution layers with different dilation rates. Then, the output results from each convolution layer are cascaded together to form the output of the entire module. This approach not only addresses the issue of information discontinuity caused by dilation but also helps the model capture multi-scale feature information. Figure 6 illustrates dilated convolutions, with the left side showing a dilated convolution with a dilation rate of 2, and the right side showing a dilated convolution with a dilation rate of 3.
+Multi-scale dilated convolution\cite{MSD} is composed of convolutions with different dilation rates. Firstly, the feature map undergoes multiple convolution layers with different dilation rates. Then, the output results from each convolution layer are cascaded together to form the output of the entire module. This approach not only addresses the issue of information discontinuity caused by dilation but also helps the model capture multi-scale feature information. Figure 5 illustrates dilated convolutions, with the left side showing a dilated convolution with a dilation rate of 2, and the right side showing a dilated convolution with a dilation rate of 3.
 
 \begin{figure}[htbp]   %注意，这里设置是关键
 	\centering
@@ -203,7 +204,7 @@ Multi-scale dilated convolution\cite{MSD} is composed of convolutions with diffe
 \section{Method}
 \label{sec:method}
 
-We utilize Swin Transformer as the encoder in the SimCLR framework and train it using unlabeled data, allowing the Swin Transformer to learn the distribution and features of the data with the help of pseudo-labels. Then, we apply the learned feature encoder to downstream segmentation tasks. Based on SimCLR and Swin Transformer, we design a deep learning network model called SimTrans, as shown in Figure 4. In the downstream tasks, to achieve an end-to-end output, a simple decoder is employed. It fuses the features obtained at different stages of the Swin Transformer and includes a decoder module that upsamples the fused features for comparison with the label map. Additionally, to better train the model, we propose a weighted structured loss function based on existing loss functions. It is a weighted sum of binary cross-entropy loss (BCE) and intersection over union loss (IOU):
+We utilize Swin Transformer as the encoder in the SimCLR framework and train it using unlabeled data, allowing the Swin Transformer to learn the distribution and features of the data with the help of pseudo-labels. Then, we apply the learned feature encoder to downstream segmentation tasks. Based on SimCLR and Swin Transformer, we design a deep learning network model called SimTrans, as shown in Figure 6. In the downstream tasks, to achieve an end-to-end output, a simple decoder is employed. It fuses the features obtained at different stages of the Swin Transformer and includes a decoder module that upsamples the fused features for comparison with the label map. Additionally, to better train the model, we propose a weighted structured loss function based on existing loss functions. It is a weighted sum of binary cross-entropy loss (BCE) and intersection over union loss (IOU):
 
 \begin{equation}
   L(s, y)=w * L_{b c e}(s, y)+L_{i o u}(s, y)
