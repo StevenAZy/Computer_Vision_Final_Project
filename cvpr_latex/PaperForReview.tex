@@ -78,11 +78,10 @@ SEIEE 2-306\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   The ABSTRACT is to be in fully justified italicized text, at the top of the left-hand column, below the author and affiliation information.
-   Use the word ``Abstract'' as the title, in 12-point Times, boldface type, centered relative to the column, initially capitalized.
-   The abstract is to be in 10-point, single-spaced type.
-   Leave two blank lines after the Abstract, then begin the main text.
-   Look at previous CVPR abstracts to get a feel for style and length.
+  Due to privacy concerns and the high cost of annotation, biomedical image datasets are small and labeled samples are scarce. Existing convolutional neural network (CNN)-based segmentation models suffer from limited receptive fields, which restrict their ability to capture global features, leading to a decrease in accuracy. To address these issues, we propose a deep learning network called SimTrans, which is based on self-supervised learning.
+  The SimTrans method initially trains data using the self-supervised framework SimCLR, overcoming the limitations of data scarcity by directly capturing the distributional features of the data without relying on labels. Subsequently, we separate the encoder part of SimCLR and combine it with the Transformer framework, adding a decoder to accomplish an end-to-end segmentation task. This approach combines the advantages of SimCLR and the Transformer framework.
+  The paper begins by introducing the self-supervised learning framework SimCLR and the Swin Transformer framework. It then describes the weighted structured loss function used in the downstream task. Next, the proposed SimTrans deep learning framework is presented in detail, followed by experimental evaluations that include experimental settings, results, and analysis.
+  SimTrans provides an innovative solution to address the limitations of small biomedical image datasets, scarcity of labeled samples, and the challenges of capturing global features in CNN-based segmentation models. By combining self-supervised learning and the Transformer framework, SimTrans effectively extracts global features and improves segmentation accuracy.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
